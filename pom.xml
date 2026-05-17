@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <groupId>eu.jpangolin</groupId>
+    <artifactId>rootpom</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>root pom</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <plugin.maven.compiler>3.15.0</plugin.maven.compiler>
+        <plugin.maven.jar>3.5.0</plugin.maven.jar>
+        <plugin.maven.install>3.1.4</plugin.maven.install>
+        <plugin.maven.resource>3.5.0</plugin.maven.resource>
+        <plugin.maven.enforcer>3.6.2</plugin.maven.enforcer>
+        <plugin.maven.dependency>3.10.0</plugin.maven.dependency>
+        <plugin.maven.gpg>3.2.8</plugin.maven.gpg>
+        <plugin.maven.surefire>3.5.5</plugin.maven.surefire>
+        <plugin.mojo.maven.dependency>2.21.0</plugin.mojo.maven.dependency>
+        <lib.slf4j>2.0.18</lib.slf4j>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Source: https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${lib.slf4j}</version>
+
+            </dependency>
+            <!-- Source: https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${lib.slf4j}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <!-- Maven enforcer plugin -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${plugin.maven.enforcer}</version>
+                </plugin>
+
+                <!-- Maven resource plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${plugin.maven.resource}</version>
+                </plugin>
+                <!-- Maven compiler plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${plugin.maven.compiler}</version>
+                </plugin>
+                <!-- Maven jar plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${plugin.maven.jar}</version>
+                </plugin>
+                <!-- Source: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-install-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${plugin.maven.install}</version>
+
+                </plugin>
+                <!-- Maven dependency plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${plugin.maven.dependency}</version>
+                </plugin>
+                <!-- Maven surefire plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${plugin.maven.surefire}</version>
+                </plugin>
+                <!-- Maven gpg plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${plugin.maven.gpg}</version>
+                </plugin>
+                <!-- Mojo dependency plugin -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${plugin.mojo.maven.dependency}</version>
+
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <!-- Here setup Maven version plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <!-- Ignore unstable versions globally -->
+                <configuration>
+                    <ignoredVersions>
+                        <ignoredVersion>.*-M.*</ignoredVersion>
+                        <ignoredVersion>.*-alpha.*</ignoredVersion>
+                    </ignoredVersions>
+                </configuration>
+            </plugin>
+            <!-- Here setup Maven gpg plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+        </plugins>
+
+    </build>
+</project>
