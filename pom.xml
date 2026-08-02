@@ -13,14 +13,16 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <plugin.maven.compiler>3.15.0</plugin.maven.compiler>
-        <plugin.maven.jar>3.5.0</plugin.maven.jar>
+        <plugin.maven.jar>3.5.1</plugin.maven.jar>
         <plugin.maven.install>3.1.4</plugin.maven.install>
         <plugin.maven.resource>3.5.0</plugin.maven.resource>
-        <plugin.maven.enforcer>3.6.2</plugin.maven.enforcer>
-        <plugin.maven.dependency>3.10.0</plugin.maven.dependency>
+        <plugin.maven.enforcer>3.6.3</plugin.maven.enforcer>
+        <plugin.maven.dependency>3.11.0</plugin.maven.dependency>
         <plugin.maven.gpg>3.2.8</plugin.maven.gpg>
-        <plugin.maven.surefire>3.5.5</plugin.maven.surefire>
+        <plugin.maven.surefire>3.5.6</plugin.maven.surefire>
         <plugin.mojo.maven.dependency>2.21.0</plugin.mojo.maven.dependency>
+        <plugin.mojo.maven.exec>3.6.3</plugin.mojo.maven.exec>
+        <plugin.graalvm.native.maven>1.1.1</plugin.graalvm.native.maven>
         <lib.slf4j>2.0.18</lib.slf4j>
     </properties>
 
@@ -102,6 +104,18 @@
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>${plugin.mojo.maven.dependency}</version>
 
+                </plugin>
+                <!-- Mojo dependency plugin -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>${plugin.mojo.maven.exec}</version>
+                </plugin>
+                <!-- maven native plugin -->
+                <plugin>
+                    <groupId>org.graalvm.buildtools</groupId>
+                    <artifactId>native-maven-plugin</artifactId>
+                    <version>${plugin.graalvm.native.maven}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
